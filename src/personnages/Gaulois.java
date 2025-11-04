@@ -1,10 +1,13 @@
 package personnages;
+import Objets.Equipement;
 
 public class Gaulois { 
 	 private String nom; 
-	 private int force; 
+	 //private int force; 
 	 private int effetPotion = 1;
 	 private Village village;
+	 private int force, nb_trophees; 
+	 private Equipement trophees[] = new Equipement[100];
 	 
 	 
 	 
@@ -37,24 +40,24 @@ public class Gaulois {
 	  System.out.println(prendreParole() + "\"" + texte + "\""); 
 	 } 
 	 
-	 private String prendreParole() { 
-	  return "Le gaulois " + nom + " : "; 
-	 } 
+//	 private String prendreParole() { 
+//	  return "Le gaulois " + nom + " : "; 
+//	 } 
 	 
 	 @Override
 	public String toString() {
 		 	return nom;	
 	}
 	 
-	public void frapper(Romain romain) {
-		String nomRomain = romain.getNom();
-		System.out.println(nom + " envoie un grand coup dans la machoire de " + nomRomain);
-		int forceCoup = (force*effetPotion) / 3;
-		if (effetPotion >= 2) {
-			effetPotion -= 1;
-		}
-		romain.recevoirCoup(forceCoup);
-	}
+//	public void frapper(Romain romain) {
+//		String nomRomain = romain.getNom();
+//		System.out.println(nom + " envoie un grand coup dans la machoire de " + nomRomain);
+//		int forceCoup = (force*effetPotion) / 3;
+//		if (effetPotion >= 2) {
+//			effetPotion -= 1;
+//		}
+//		romain.recevoirCoup(forceCoup);
+//	}
 	
 	public void boirePotion(int forcePotion) {
 		effetPotion = forcePotion;
@@ -74,6 +77,22 @@ public class Gaulois {
 		    } else {
 		    	System.out.println("Bonjour, je m'apelle " + nom + ". Je voyage de villages en villages.");		    }
 		}
+	 
+	 private String prendreParole() { 
+		 String texte = "Le gaulois " + nom + " : "; 
+		 return texte; 
+	 }
+	 
+	 public void frapper(Romain romain) { 
+		 System.out.println(nom + " envoie un grand coup dans la mâchoire de " + 
+		 romain.getNom()); 
+		 Equipement trophees[] = romain.recevoirCoup((force / 3) * effetPotion); 
+		 for (int i = 0; trophees != null && i < trophees.length; i++, 
+		 nb_trophees++) { 
+		 this.trophees[nb_trophees] = trophees[i]; 
+		 } 
+		 return; 
+		 }
 	 
 } 
 
